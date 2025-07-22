@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronDown, Users, Flag, Mail, Zap, Shield, Code, Target } from 'lucide-react';
 import { DiscordLogo, GithubLogo } from 'phosphor-react';
 
@@ -36,7 +36,9 @@ function App() {
   const teamMembers = [
     { name: 'HUNGRY BOGART', role: 'Captain of Mind Control Operations', specialty: 'Reversing, web, forensics, OSINT' },
     // cspell:disable-next-line
-    { name: 'NULLPOINTERSF', role: 'Forward Reconnaissance Agent', specialty: 'AI/ML Prompt hacking, mobile security' }
+    { name: 'NULLPOINTERSF', role: 'Forward Reconnaissance Agent', specialty: 'AI/ML Prompt Injections, mobile security, Coding Challenges, Reversing' },
+    { name: 'UNPATCHES', role: 'Junior Agent in Charge of Disinformation Campaigns', specialty: 'Social Engineering, Lockpicking, Game Hacking' },
+    { name: 'CH33KS', role: 'Chemical Warfare Agent', specialty: 'API Security, Lockpicking, web' }
   ];
 
   const competitions = [
@@ -208,8 +210,9 @@ function App() {
                   <h3 className="text-xl font-bold text-green-400 uppercase tracking-wider mb-1">
                     {member.name}
                   </h3>
-                  const competitions = [
-                <p className="text-gray-300 mb-4">{member.specialty}</p>
+                  <p className="text-gray-300 mb-4">{member.specialty}</p>
+                  <p className="text-gray-400 text-sm italic mb-4">{member.role}</p>
+                </div>
                 <div className="w-full bg-gray-800 h-1">
                   <div 
                     className="h-1 bg-gradient-to-r from-green-400 to-blue-400 transition-all duration-1000 group-hover:w-full" 
