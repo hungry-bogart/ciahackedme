@@ -78,6 +78,7 @@ function App() {
 
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        {/* Background gradient starts here. Experiment with colors! */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-gradient-to-r from-green-400/5 via-transparent to-green-400/5 animate-pulse"></div>
@@ -206,7 +207,7 @@ function App() {
                 className="group bg-gradient-to-br from-gray-900 to-black p-6 border border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105"
               >
                 <div className="mb-4">
-                  <Users className="w-12 h-12 text-green-400 mb-3" />
+                  <Users className="w-12 h-12 text-cyan-400 mb-3" />
                   <h3 className="text-xl font-bold text-green-400 uppercase tracking-wider mb-1">
                     {member.name}
                   </h3>
@@ -238,7 +239,7 @@ function App() {
                 key={achievement.event}
                 className="bg-black/70 p-6 border border-gray-700 hover:border-blue-400 transition-all duration-300 group"
               >
-                <Flag className="w-8 h-8 text-red-400 mb-4 group-hover:animate-pulse" />
+                <Flag className="w-8 h-8 text-orange-400 mb-4 group-hover:animate-pulse" />
                 <h3 className="text-xl font-bold text-white mb-2">{achievement.event}</h3>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-green-400 font-semibold">{achievement.placement}</span>
