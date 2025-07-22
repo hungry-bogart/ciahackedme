@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Users, Flag, Mail, Github, Twitter, Zap, Shield, Code, Target } from 'lucide-react';
+import { ChevronDown, Users, Flag, Mail, Zap, Shield, Code, Target } from 'lucide-react';
+import { DiscordLogo, GithubLogo } from 'phosphor-react';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -34,14 +35,13 @@ function App() {
 
   const teamMembers = [
     { name: 'HUNGRY BOGART', role: 'Captain of Mind Control Operations', specialty: 'Reversing, web, forensics, OSINT' },
-    { name: 'NULLPOINTER-SF', role: 'Forward Reconnaissance Agent', specialty: 'AI/ML Prompt hacking, mobile, web, coding challenges, Most Valuable Hacker (MVH) 2025' },
-    { name: 'CH33KS', role: 'Chemical Warfare Agent', specialty: 'Lockpicking, apis, databases' },
-    { name: 'UNPATCHES', role: 'Junior Agent in Charge of Disinformation', specialty: 'Physical penetration testing, game hacking, social engineering' }
+    // cspell:disable-next-line
+    { name: 'NULLPOINTERSF', role: 'Forward Reconnaissance Agent', specialty: 'AI/ML Prompt hacking, mobile security' }
   ];
 
   const competitions = [
     { event: '0ctf 2024', placement: '114th Place', points: '129' },
-    { event: 'Cyber Apocolypse CTF 2025: Tales from Eldoria', placement: '609th Place', points: '24,000' },
+    { event: 'Cyber Apocalypse CTF 2025: Tales from Eldoria', placement: '609th Place', points: '24,000' },
     { event: 'BSides NYC', placement: '2nd Place', points: '12,780' },
     { event: 'CyberPatriot', placement: '1st Place', points: '31,200' },
     { event: 'CSAW CTF', placement: '4th Place', points: '18,660' },
@@ -208,8 +208,7 @@ function App() {
                   <h3 className="text-xl font-bold text-green-400 uppercase tracking-wider mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-pink-400 font-semibold">{member.role}</p>
-                </div>
+                  const competitions = [
                 <p className="text-gray-300 mb-4">{member.specialty}</p>
                 <div className="w-full bg-gray-800 h-1">
                   <div 
@@ -281,13 +280,13 @@ function App() {
               href="#"
               className="w-12 h-12 bg-gray-800 flex items-center justify-center border border-gray-600 hover:border-green-400 hover:bg-green-500/20 transition-all duration-300"
             >
-              <Github className="w-6 h-6" />
+              <GithubLogo className="w-6 h-6" />
             </a>
             <a
               href="#"
               className="w-12 h-12 bg-gray-800 flex items-center justify-center border border-gray-600 hover:border-blue-400 hover:bg-blue-500/20 transition-all duration-300"
             >
-              <Twitter className="w-6 h-6" />
+              <DiscordLogo className="w-6 h-6" />
             </a>
           </div>
         </div>
