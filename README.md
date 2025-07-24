@@ -1,4 +1,4 @@
-#Coney Island Arcade Website
+# Coney Island Arcade Website
 
 ## This is the official webpage repository for CONEY ISLAND ARCADE. Also known as CIA. The live webpage is available at: https://ciahacked.me
 We encourage CTF teams to use this as a template if they are just getting started. Please make sure to make significant changes so that it's clear it is your own page.
