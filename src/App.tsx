@@ -35,7 +35,7 @@ function App() {
 
   const teamMembers = [
     { name: 'HUNGRY BOGART', role: 'Captain of Mind Control Operations', specialty: 'Reversing, Web, Forensics, OSINT' },
-    { name: 'NULLPOINTERSF', role: 'Forward Reconnaissance Agent', specialty: 'AI/ML Prompt, Mobile Security, Coding Challenges, Reversing' },
+    { name: 'NULLPOINTERSF', role: 'Forward Reconnaissance Agent', specialty: 'AI/ML, Mobile Security, Coding Challenges, Reversing' },
     { name: 'UNPATCHES', role: 'Junior Agent in Charge of Disinformation Campaigns', specialty: 'Social Engineering, Lockpicking, Game Hacking' },
     { name: 'CH33KS', role: 'Chemical Warfare Agent', specialty: 'API Security, Lockpicking, Web' }
   ];
@@ -202,7 +202,7 @@ function App() {
           <p className="text-xl md:text-2xl text-blue-300 mb-12 leading-relaxed">
             We are the persistent noise you hear on the wire.
             <span className="text-orange-400"> We hack our way to the end of each challenge, </span>
-            <span className="text-purple-400 font-semibold">one flag at a time</span>
+            <span className="text-purple-400 font-semibold">one flag at a time.</span>
           </p>
 
           <button
