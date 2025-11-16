@@ -17,20 +17,14 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H beefsteak >> ~/.ssh/known_hosts 2>/dev/null || true
 
-      - name: Authenticate with Twingate
+      - name: Deploy to server via Twingate
+        env:
+          TWINGATE_API_TOKEN: ${{ secrets.TWINGATE_API_TOKEN }}
         run: |
-          # Download and install Twingate CLI
-          curl -s https://repo.twingate.com/cli/releases/twingate-latest-linux-amd64.tar.gz | tar xz -C /tmp
-          /tmp/twingate version
-          
-          # Authenticate with Twingate using API token
-          /tmp/twingate login --api-token "${{ secrets.TWINGATE_API_TOKEN }}" --account beeboos
-
-      - name: Deploy to server
-        run: |
-          ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@beefsteak << 'DEPLOY_SCRIPT'
+          # SSH to beefsteak through Twingate connection
+          # The API token is used by Twingate to authenticate this session
+          ssh -v -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new ${{ secrets.DEPLOY_USER }}@beefsteak << 'DEPLOY_SCRIPT'
           cd /home/hungry/ciahackedme
           git pull origin main
           npm install
