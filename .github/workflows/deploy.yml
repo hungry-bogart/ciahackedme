@@ -12,12 +12,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Connect to Twingate
-        uses: twingate/github-action@v1
-        with:
-          service-key: ${{ secrets.TWINGATE_SERVICE_KEY }}
-          service-key-id: ${{ secrets.TWINGATE_SERVICE_KEY_ID }}
-          access-token: ${{ secrets.TWINGATE_API_TOKEN }}
+      - name: Install Twingate
+        run: |
+          echo "deb [trusted=yes] https://packages.twingate.com/apt/ /" | sudo tee /etc/apt/sources.list.d/twingate.list
+          sudo apt update -yq
+          sudo apt install -yq twingate
+
+      - name: Setup and start Twingate
+        env:
+          TWINGATE_SERVICE_KEY: ${{ secrets.TWINGATE_SERVICE_KEY }}
+        run: |
+          echo $TWINGATE_SERVICE_KEY | sudo twingate setup --headless=-
+          sudo twingate start
 
       - name: Setup SSH
         run: |
@@ -36,6 +42,10 @@ jobs:
           pm2 restart cia-hacked-me
           echo "✅ Deployment completed successfully!"
           DEPLOY_SCRIPT
+
+      - name: Stop Twingate
+        if: always()
+        run: sudo twingate stop
 
       - name: Notify deployment
         if: success()
