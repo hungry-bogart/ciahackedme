@@ -19,6 +19,15 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H beefsteak >> ~/.ssh/known_hosts 2>/dev/null || true
 
+      - name: Authenticate with Twingate
+        run: |
+          # Download and install Twingate CLI
+          curl -s https://repo.twingate.com/cli/releases/twingate-latest-linux-amd64.tar.gz | tar xz -C /tmp
+          /tmp/twingate version
+          
+          # Authenticate with Twingate using API token
+          /tmp/twingate login --api-token "${{ secrets.TWINGATE_API_TOKEN }}" --account beeboos
+
       - name: Deploy to server
         run: |
           ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@beefsteak << 'DEPLOY_SCRIPT'
