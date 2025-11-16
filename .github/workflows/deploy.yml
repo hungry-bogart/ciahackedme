@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Connect to Twingate
-        uses: twingate/github-action@v1
+        uses: twingate/github-action@v1.5
         with:
           service-key: ${{ secrets.TWINGATE_SERVICE_KEY }}
           service-key-id: ${{ secrets.TWINGATE_SERVICE_KEY_ID }}
