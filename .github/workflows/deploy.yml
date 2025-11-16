@@ -17,11 +17,11 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+          ssh-keyscan -H beefsteak >> ~/.ssh/known_hosts 2>/dev/null || true
 
       - name: Deploy to server
         run: |
-          ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} << 'DEPLOY_SCRIPT'
+          ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@beefsteak << 'DEPLOY_SCRIPT'
           cd /home/hungry/ciahackedme
           git pull origin main
           npm install
