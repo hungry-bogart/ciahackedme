@@ -1,0 +1,39 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Deploy to server
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} << 'DEPLOY_SCRIPT'
+          cd /home/hungry/ciahackedme
+          git pull origin main
+          npm install
+          npm run build
+          pm2 restart cia-hacked-me
+          echo "✅ Deployment completed successfully!"
+          DEPLOY_SCRIPT
+
+      - name: Notify deployment
+        if: success()
+        run: echo "🚀 Successfully deployed to ciahacked.me"
+
+      - name: Notify failure
+        if: failure()
+        run: echo "❌ Deployment failed - check logs above"
