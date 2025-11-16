@@ -12,6 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Connect to Twingate
+        uses: twingate/github-action@v1
+        with:
+          service-key: ${{ secrets.TWINGATE_SERVICE_KEY }}
+          service-key-id: ${{ secrets.TWINGATE_SERVICE_KEY_ID }}
+          access-token: ${{ secrets.TWINGATE_API_TOKEN }}
+
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
