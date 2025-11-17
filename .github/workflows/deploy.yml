@@ -21,7 +21,7 @@ jobs:
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H 192.168.12.183 >> ~/.ssh/known_hosts 2>/dev/null || true
-      
+          
       - name: Deploy to server
         run: |
           ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@192.168.12.183 << 'DEPLOY_SCRIPT'
