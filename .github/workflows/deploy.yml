@@ -1,9 +1,7 @@
 name: Deploy to Production
-
 on:
   push:
     branches: [ main ]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -11,21 +9,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+      
       - name: Connect to Twingate
         uses: twingate/github-action@v1.5
         with:
           service-key: ${{ secrets.TWINGATE_SERVICE_KEY }}
-          service-key-id: ${{ secrets.TWINGATE_SERVICE_KEY_ID }}
-          access-token: ${{ secrets.TWINGATE_API_TOKEN }}
-
+      
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H 192.168.12.183 >> ~/.ssh/known_hosts 2>/dev/null || true
-
+      
       - name: Deploy to server
         run: |
           ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@192.168.12.183 << 'DEPLOY_SCRIPT'
@@ -36,11 +32,11 @@ jobs:
           pm2 restart cia-hacked-me
           echo "✅ Deployment completed successfully!"
           DEPLOY_SCRIPT
-
+      
       - name: Notify deployment
         if: success()
-        run: echo "🚀 Successfully deployed to ciahacked.me"
-
+        run: echo "🚀 Successfully deployed to ciahackedme"
+      
       - name: Notify failure
         if: failure()
         run: echo "❌ Deployment failed - check logs above"
